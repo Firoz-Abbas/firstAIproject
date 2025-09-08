@@ -22,7 +22,7 @@
                 <input type="password" name="password" class="form-control" placeholder="Enter password" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100" onclick="userLogin()">Login</button>
 
             <p class="text-center mt-3 mb-0">
                 <a href="#" class="text-decoration-none">Forgot Password?</a>
@@ -30,6 +30,44 @@
         </form>
     </div>
 </div>
+
+<script>
+
+    function userLogin(){
+    console.log("i am user .........")
+    }
+
+    function login() {
+        var form = $('#loginFrm')[0];
+        var data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: "/userLogin",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 1000000,
+            success: function (data, textStatus, jqXHR) {
+                var userRoleId = jqXHR.responseJSON.userRoleId;
+                let homePage = jqXHR.responseJSON.homePage ;
+
+                if (parseInt(userRoleId) == 5) {
+                    showErrorMessageDivElementFromBackend("username", "Candidate can't login from here!");
+                } else {
+                    if (parseInt(userRoleId) == 3) {
+                        successLogin(jqXHR.responseJSON.message, "/student/MyAccount");
+                    } else {
+                        successLogin(jqXHR.responseJSON.message,homePage);
+                    }
+                }
+            },
+            error: function (jqxhr, textStatus, errThrown) {
+                showErrorMessage(jqxhr.responseJSON.errors);
+            }
+        });
+    }
+</script>
 
 </body>
 </html>

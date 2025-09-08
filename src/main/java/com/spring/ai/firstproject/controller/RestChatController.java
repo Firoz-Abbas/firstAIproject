@@ -21,8 +21,8 @@ public class RestChatController {
 
     @GetMapping("/chat/{message}")
     public ResponseEntity<String> getChat(@PathVariable String message) {
-        String content=chatService.getChat(message);
-//        String content= "hi i am open AI version 5.";
+//        String content=chatService.getChat(message);
+        String content= "hi i am open AI version 5.";
         return ResponseEntity.ok(content);
     }
 }
