@@ -11,7 +11,7 @@
     <div class="card shadow-lg p-4" style="width: 350px; border-radius: 15px;">
         <h3 class="text-center mb-4">Login</h3>
 
-        <form action="/login" method="post">
+        <form id="loginFrm" name="loginFrm" action="#">
             <div class="mb-3">
                 <label class="form-label">Username</label>
                 <input type="text" name="username" class="form-control" placeholder="Enter username" required>
@@ -30,14 +30,10 @@
         </form>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-    function userLogin(){
-    console.log("i am user .........")
-    }
-
-    function login() {
+    function userLogin() {
         var form = $('#loginFrm')[0];
         var data = new FormData(form);
         $.ajax({
@@ -48,18 +44,11 @@
             contentType: false,
             cache: false,
             timeout: 1000000,
-            success: function (data, textStatus, jqXHR) {
-                var userRoleId = jqXHR.responseJSON.userRoleId;
-                let homePage = jqXHR.responseJSON.homePage ;
-
-                if (parseInt(userRoleId) == 5) {
-                    showErrorMessageDivElementFromBackend("username", "Candidate can't login from here!");
+            success: function (data) {
+                if (data.page === "home") {
+                    window.location.href = "/home"; // controller mapping for home.jsp
                 } else {
-                    if (parseInt(userRoleId) == 3) {
-                        successLogin(jqXHR.responseJSON.message, "/student/MyAccount");
-                    } else {
-                        successLogin(jqXHR.responseJSON.message,homePage);
-                    }
+                    $("#errorMsg").text("Invalid username or password");
                 }
             },
             error: function (jqxhr, textStatus, errThrown) {
