@@ -14,11 +14,6 @@ public class RestChatController {
     @Autowired
     private ChatService chatService;
 
-    private ChatClient chatClient;
-    public RestChatController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
-    }
-
     @GetMapping("/chat/{message}")
     public ResponseEntity<String> getChat(@PathVariable String message) {
 //        String content=chatService.getChat(message);

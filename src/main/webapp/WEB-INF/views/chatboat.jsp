@@ -8,7 +8,7 @@
                     background: #f8f9fa;
                 }
                 .chat-container {
-                    max-width: 600px;
+                    max-width: 700px;
                     margin: 50px auto;
                     background: white;
                     border-radius: 15px;
