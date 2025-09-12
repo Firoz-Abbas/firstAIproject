@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AiConfig {
 
-    @Bean(name = "openAiChatClient")
+    /*@Bean(name = "openAiChatClient")
     public ChatClient openAiChatClient(OpenAiChatModel chatModel) {
     return ChatClient.builder(chatModel).build();
-    }
+    }*/
 
     /*@Bean(name = "ollamaAiChatClient")
     public ChatClient ollamaChatClient(OllamaChatModel chatModel) {

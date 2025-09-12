@@ -1,9 +1,10 @@
 package com.spring.ai.firstproject.services;
 
+import com.spring.ai.firstproject.model.tuitor.Tut;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface ChatService {
 
-    String getChat(String map);
+    Tut getChat(String map);
 }

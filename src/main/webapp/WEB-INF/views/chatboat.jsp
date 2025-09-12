@@ -91,7 +91,7 @@ function sendMessage(event) {
     $.ajax({
         type: "GET",
         url: "/ai/chat/" + encodeURIComponent(message),
-        dataType: "text",
+        dataType: "json",
         success: function (data) {
             addMessage("bot", data);
         },
