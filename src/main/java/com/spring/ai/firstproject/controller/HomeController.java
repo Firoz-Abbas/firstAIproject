@@ -1,6 +1,8 @@
 package com.spring.ai.firstproject.controller;
 
 import com.spring.ai.firstproject.services.loginservices.LoginServices;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +36,7 @@ public class HomeController {
 
     @PostMapping("/userLogin")
     @ResponseBody
-    public Map<String, String> processLogin(@RequestParam String username, @RequestParam String password, Model model) {
-       return loginServices.processLogin(username, password, model);
+    public Map<String, String> processLogin(@RequestParam String username, @RequestParam String password, HttpServletRequest request, HttpServletResponse response) {
+       return loginServices.processLogin(username, password, request, response);
     }
 }
